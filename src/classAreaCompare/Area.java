@@ -2,32 +2,50 @@ package classAreaCompare;
 import java.util.Scanner;
 
 public class Area {
+    //Sets final area to 0 to use later
     double finalArea = 0;
+    //Sets input for future scanner.
     Scanner input = new Scanner(System.in);
+    //Constant. This is essential so I don't have to create 500 if else statements. Just sets each shape to a number.
+    static String[] areaShape = {"circle", "triangle", "rectangle"};
+    //The rest of these are so I don't have to declare an array 15 times.
+    static String[] areaShapeCompare = new String[2];
+    static boolean[] shapeSelected = new boolean[3];
+    static double[] areaValCompare = new double[2];
+    static boolean[] checkShape = Area.selectShape();
+    //This module calculates the area of the triangle
     public double triArea(double base, double height){
         double area = base * height / 2.0;
         return area;
     }
+    //This module calculates the area of the circle
     public double cirArea(double radius){
         double area = Math.PI * Math.pow(radius, 2.0);
         return area;
     }
+    //This module calculates the area of the rectangle
     public double recArea(double base, double height){
         double area = base * height;
         return area;
     }
+    //This module initiates the selection of a shape.
     public static boolean[] selectShape() {
-        boolean[] shapeSelected = new boolean[3];
         Scanner input = new Scanner(System.in);
         System.out.println("Please select 1 for Circle, 2 for Triangle, 3 for Rectangle for your first shape.");
         int firSel = input.nextInt();
+        //Sets the number to the array so I can see that a shape has been selected. For example, if 1 = true, circle has been selected
         shapeSelected[firSel - 1] = true;
+        //This does the same as the line above, BUT sets the string for the final comparison. Makes my life easier.
+        areaShapeCompare[0] = areaShape[firSel - 1];
         System.out.println("Please select 1 for Circle, 2 for Triangle, 3 for Rectangle for your second shape.");
         int sndSel = input.nextInt();
         shapeSelected[sndSel - 1] = true;
+        areaShapeCompare[1] = areaShape[sndSel - 1];
+        //Writes to the array.
         return shapeSelected;
     }
     public double getArea(int i){
+        //This switch statement pulls double duty. It'll be able to match the array and gather the data for the array.
         switch(i) {
             case 0:
                 System.out.print("\nPlease enter radius of the circle\n");
