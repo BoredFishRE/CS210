@@ -1,25 +1,21 @@
 /*
 Elliott Benson CS210
 10/7/2026
+This program will take the area of 2 shapes and will calculate said areas depending on selected shapes, then compare to
+see which area is greater than the other.
  */
 package classAreaCompare;
-import java.util.Arrays;
 public class MyShape {
     public static void main(String[] args) {
-        boolean[] checkShape = Area.selectShape();
+        //defines the module doing 99% of the heavy lifting
         Area myShape = new Area();
-        String[] areaShape = {"circle", "triangle", "rectangle"};
+        //sets while loop to false so it can run.
         boolean shapeDone = false;
-       while (!shapeDone){
-            double[] areaVal = new double[3];
-            System.out.println(Arrays.toString(checkShape));
-            for (int i = 0; i < 3; i++){
-                if (checkShape[i]){
-                    areaVal[i] = myShape.getArea(i);
-                    System.out.print("\nThe area of the " + areaShape[i] + " is ");
-                    System.out.print(areaVal[i]);
-                }
-            }
+        while (!shapeDone){
+            //This kicks off the chain of modules. Asks which 2 shapes to use, gathers data required to calculate data, then calculates the area.
+            myShape.areaGreat();
+            //Does the final comparison to see which area is greater than or less than
+            myShape.finalCompare();
             shapeDone = true;
         }
     }
